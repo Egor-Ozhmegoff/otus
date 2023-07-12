@@ -18,10 +18,7 @@ services:
       - nginx
 
   apache:
-    image: "apache:stable"
-    build:
-      context: "./apache/"
-      dockerfile: "Dockerfile"
+    image: "httpd:bookworm"
     container_name: apache
     volumes:
       - ./apache/sites/:/usr/local/apache2/htdocs/
