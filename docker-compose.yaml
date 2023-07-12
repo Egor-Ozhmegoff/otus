@@ -24,8 +24,8 @@ services:
       dockerfile: "Dockerfile"
     container_name: apache
     volumes:
-      - ./apache/ports.conf:/etc/apache2/ports.conf
-      - /var/log/apache2:/var/log/apache2:rw
+      - ./apache/sites/:/usr/local/apache2/htdocs/
+      - ./apache/httpd.conf:/usr/local/apache2/httpd.conf:ro
     restart: always
     ports:
       - 8081:8081
