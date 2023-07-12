@@ -17,17 +17,39 @@ services:
     networks:
       - nginx
 
-  apache:
+  apache_1:
     image: "httpd:bookworm"
-    container_name: apache
+    container_name: apache_1
     volumes:
-      - ./apache/sites/:/usr/local/apache2/htdocs/
+      - ./apache/site1/:/usr/local/apache2/htdocs/
       - ./apache/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
     restart: always
     ports:
-      - 8081:8081
-      - 8082:8082
-      - 8083:8083
+      - 8081:80
+    networks:
+      - nginx
+
+  apache_2:
+    image: "httpd:bookworm"
+    container_name: apache_2
+    volumes:
+      - ./apache/site2/:/usr/local/apache2/htdocs/
+      - ./apache/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
+    restart: always
+    ports:
+      - 8082:80
+    networks:
+      - nginx
+
+  apache_3:
+    image: "httpd:bookworm"
+    container_name: apache_3
+    volumes:
+      - ./apache/site3/:/usr/local/apache2/htdocs/
+      - ./apache/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
+    restart: always
+    ports:
+      - 8083:80
     networks:
       - nginx
 
