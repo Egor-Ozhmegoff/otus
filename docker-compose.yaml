@@ -27,7 +27,7 @@ services:
       - 8081:80
     networks:
       nginx:
-        ipv4_address: 172.16.0.11/24
+        ipv4_address: 172.16.0.11
 
   apache_2:
     image: "httpd:bookworm"
@@ -39,7 +39,7 @@ services:
       - 8082:80
     networks:
       nginx:
-        ipv4_address: 172.16.0.12/24
+        ipv4_address: 172.16.0.12
 
   apache_3:
     image: "httpd:bookworm"
@@ -51,7 +51,7 @@ services:
       - 8083:80
     networks:
       nginx:
-        ipv4_address: 172.16.0.13/24
+        ipv4_address: 172.16.0.13
 
 networks:
   nginx:
