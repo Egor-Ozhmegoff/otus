@@ -22,7 +22,7 @@ services:
     container_name: apache
     volumes:
       - ./apache/sites/:/usr/local/apache2/htdocs/
-      - ./apache/httpd.conf:/usr/local/apache2/httpd.conf:ro
+      - ./apache/httpd.conf:/usr/local/apache2/conf/httpd.conf:ro
     restart: always
     ports:
       - 8081:8081
