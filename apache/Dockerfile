@@ -1,4 +1,4 @@
-FROM httpd:stable
+FROM httpd:bookworm
 
 COPY ./sites-available /etc/apache2/sites-available
 RUN ln -s /etc/apache2/sites-available/apache_server1.conf /etc/apache2/sites-enabled/apache_server1.conf
