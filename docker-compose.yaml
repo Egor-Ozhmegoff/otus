@@ -135,7 +135,7 @@ services:
 
 networks:
   nginx:
-    driver: bridge
+    driver: overlay
     ipam:
      config:
      - subnet: 10.110.16.0/24
