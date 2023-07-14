@@ -1,0 +1,7 @@
+{
+"log-driver": "syslog",
+  "log-opts": {
+    "syslog-address": "tcp://10.110.49.2:5000",
+    "tag": "{{.Name}}"
+  }
+}

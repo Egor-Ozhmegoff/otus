@@ -15,7 +15,8 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     networks:
-      - nginx
+      nginx:
+        ipv4_address: 172.16.0.10
 
   apache_1:
     image: "httpd:bookworm"
@@ -46,6 +47,60 @@ services:
     networks:
       nginx:
         ipv4_address: 172.16.0.13
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    ports:
+      - 9090:9090
+    links:
+      - alertmanager:alertmanager
+    depends_on:
+      - cadvisor
+    restart: always
+    networks:
+      nginx:
+        ipv4_address: 172.16.0.21
+
+  alertmanager:
+    image: prom/alertmanager
+    ports:
+      - 9093:9093
+    volumes:
+      - ./prometheus/alertmanager/:/etc/alertmanager/
+    restart: always
+    command:
+      - '--config.file=/etc/alertmanager/config.yml'
+      - '--storage.path=/alertmanager'
+    networks:
+      nginx:
+        ipv4_address: 172.16.0.22
+
+  grafana:
+    image: grafana/grafana
+    user: "472"
+    depends_on:
+      - prometheus
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+    environment:
+      - GF_INSTALL_PLUGINS=vonage-status-panel
+    env_file:
+      - ./grafana/config.monitoring
+    restart: always
+    networks:
+      nginx:
+        ipv4_address: 172.16.0.23
 
 networks:
   nginx:
