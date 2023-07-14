@@ -107,6 +107,44 @@ services:
       nginx:
         ipv4_address: 172.16.0.23
 
+  mysql_master:
+    image: mysql:latest
+    container_name: mysql_master
+    env_file:
+      - ./mysql/mysql.config
+    command:
+      [
+        mysqld,
+        --character-set-server=utf8mb4,
+        --collation-server=utf8mb4_unicode_ci,
+        --innodb_monitor_enable=all,
+        --max-connections=1001,
+      ]
+    ports:
+      - 3306
+    networks:
+      nginx:
+        ipv4_address: 172.16.0.31
+
+  mysql_slave:
+    image: mysql:latest
+    container_name: mysql_slave
+    env_file:
+      - ./mysql/mysql.config
+    command:
+      [
+        mysqld,
+        --character-set-server=utf8mb4,
+        --collation-server=utf8mb4_unicode_ci,
+        --innodb_monitor_enable=all,
+        --max-connections=1001,
+      ]
+    ports:
+      - 3306
+    networks:
+      nginx:
+        ipv4_address: 172.16.0.32
+
 networks:
   nginx:
     driver: bridge
