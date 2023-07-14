@@ -1,5 +1,9 @@
 version: '3.7'
 
+volumes:
+    prometheus_data: {}
+    grafana_data: {}
+
 services:
 
   nginx:
@@ -53,7 +57,7 @@ services:
     container_name: prometheus
     volumes:
       - ./prometheus/:/etc/prometheus/
-      - ./prometheus/prometheus_data:/prometheus
+      - prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -92,7 +96,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ./grafana/grafana_data:/var/lib/grafana:rw
+      - grafana_data:/var/lib/grafana:rw
       - ./grafana/provisioning/:/etc/grafana/provisioning/
     environment:
       - GF_INSTALL_PLUGINS=vonage-status-panel
