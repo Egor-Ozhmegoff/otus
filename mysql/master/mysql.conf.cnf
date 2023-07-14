@@ -1,5 +1,3 @@
-bind-address = 0.0.0.0
-
 [mysqld]
 
 skip-name-resolve
@@ -9,3 +7,4 @@ server-id = 1
 log_bin = 1
 binlog_format = ROW
 binlog_do_db = mydb
+bind-address = 0.0.0.0
