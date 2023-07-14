@@ -86,7 +86,7 @@ services:
   grafana:
     image: grafana/grafana
     container_name: grafana
-    user: "0"
+    user: "472"
     depends_on:
       - prometheus
     ports:
