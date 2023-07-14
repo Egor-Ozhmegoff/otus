@@ -111,12 +111,13 @@ services:
     image: mysql:8.0
     container_name: mysql_master
     volumes:
-      - ./master/mysql.conf.cnf:/etc/mysql/conf.d/mysql.conf.cnf
-      - ./master/data:/var/lib/mysql
+      - ./mysql/master/mysql.conf.cnf:/etc/mysql/conf.d/mysql.conf.cnf
+      - ./mysql/master/data:/var/lib/mysql
     env_file:
       - ./mysql/mysql.config
     ports:
       - 3306
+    restart: always
     networks:
       nginx:
         ipv4_address: 172.16.0.31
@@ -125,12 +126,13 @@ services:
     image: mysql:8.0
     container_name: mysql_slave
     volumes:
-      - ./slave/mysql.conf.cnf:/etc/mysql/conf.d/mysql.conf.cnf
-      - ./slave/data:/var/lib/mysql
+      - ./mysql/slave/mysql.conf.cnf:/etc/mysql/conf.d/mysql.conf.cnf
+      - ./mysql/slave/data:/var/lib/mysql
     env_file:
       - ./mysql/mysql.config
     ports:
       - 3306
+    restart: always
     networks:
       nginx:
         ipv4_address: 172.16.0.32
