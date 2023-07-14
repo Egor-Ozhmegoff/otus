@@ -115,8 +115,6 @@ services:
       - ./mysql/master/data:/var/lib/mysql
     env_file:
       - ./mysql/mysql.config
-    ports:
-      - 3306
     restart: always
     networks:
       nginx:
@@ -130,8 +128,6 @@ services:
       - ./mysql/slave/data:/var/lib/mysql
     env_file:
       - ./mysql/mysql.config
-    ports:
-      - 3306
     restart: always
     networks:
       nginx:
