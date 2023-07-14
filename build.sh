@@ -6,7 +6,7 @@ sudo rm -rf ./mysql/slave/data/*
 docker-compose build
 docker-compose up -d
 
-until docker exec mysql_master sh -c 'export MYSQL_PWD=password; 1 ";"'
+until docker exec mysql_master sh -c 'export MYSQL_PWD=password; mysql -u root -e ";"'
 do
     echo "Waiting for mysql_master database connection..."
     sleep 4
