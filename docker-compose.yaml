@@ -62,8 +62,6 @@ services:
       - 9090:9090
     links:
       - alertmanager:alertmanager
-    depends_on:
-      - cadvisor
     restart: always
     networks:
       nginx:
