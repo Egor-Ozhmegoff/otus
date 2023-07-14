@@ -1,12 +1,12 @@
 #!/bin/bash
 
 docker-compose down -v
-rm -rf ./master/data/*
-rm -rf ./slave/data/*
+rm -rf ./mysql/master/data/*
+rm -rf ./mysql/slave/data/*
 docker-compose build
 docker-compose up -d
 
-until docker exec mysql_master sh -c 'export MYSQL_PWD=password; mysql -u root -e ";"'
+until docker exec mysql_master sh -c 'export MYSQL_PWD=password; 1 ";"'
 do
     echo "Waiting for mysql_master database connection..."
     sleep 4
