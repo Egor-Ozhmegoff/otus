@@ -139,4 +139,3 @@ networks:
     ipam:
      config:
      - subnet: 10.110.16.0/24
-       gateway: 10.110.16.1
