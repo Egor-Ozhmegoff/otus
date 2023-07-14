@@ -20,7 +20,7 @@ services:
       - "host.docker.internal:host-gateway"
     networks:
       nginx:
-        ipv4_address: 172.16.0.10
+        ipv4_address: 10.110.16.10
 
   apache_1:
     image: "httpd:bookworm"
@@ -30,7 +30,7 @@ services:
     restart: always
     networks:
       nginx:
-        ipv4_address: 172.16.0.11
+        ipv4_address: 10.110.16.11
 
   apache_2:
     image: "httpd:bookworm"
@@ -40,7 +40,7 @@ services:
     restart: always
     networks:
       nginx:
-        ipv4_address: 172.16.0.12
+        ipv4_address: 10.110.16.12
 
   apache_3:
     image: "httpd:bookworm"
@@ -50,7 +50,7 @@ services:
     restart: always
     networks:
       nginx:
-        ipv4_address: 172.16.0.13
+        ipv4_address: 10.110.16.13
 
   prometheus:
     image: prom/prometheus:latest
@@ -70,7 +70,7 @@ services:
     restart: always
     networks:
       nginx:
-        ipv4_address: 172.16.0.21
+        ipv4_address: 10.110.16.21
 
   alertmanager:
     image: prom/alertmanager
@@ -85,7 +85,7 @@ services:
       - '--storage.path=/alertmanager'
     networks:
       nginx:
-        ipv4_address: 172.16.0.22
+        ipv4_address: 10.110.16.22
 
   grafana:
     image: grafana/grafana
@@ -105,7 +105,7 @@ services:
     restart: always
     networks:
       nginx:
-        ipv4_address: 172.16.0.23
+        ipv4_address: 10.110.16.23
 
   mysql_master:
     image: mysql:8.0
@@ -120,7 +120,7 @@ services:
     restart: always
     networks:
       nginx:
-        ipv4_address: 172.16.0.31
+        ipv4_address: 10.110.16.31
 
   mysql_slave:
     image: mysql:8.0
@@ -135,12 +135,12 @@ services:
     restart: always
     networks:
       nginx:
-        ipv4_address: 172.16.0.32
+        ipv4_address: 10.110.16.32
 
 networks:
   nginx:
     driver: bridge
     ipam:
      config:
-     - subnet: 172.16.0.0/24
-       gateway: 172.16.0.1
+     - subnet: 10.110.16.0/24
+       gateway: 10.110.16.1
