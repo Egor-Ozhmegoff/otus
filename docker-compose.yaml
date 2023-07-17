@@ -18,39 +18,24 @@ services:
       - 80:80
     extra_hosts:
       - "host.docker.internal:host-gateway"
-    networks:
-      nginx:
-        ipv4_address: 10.110.16.10
 
   apache_1:
     image: "httpd:bookworm"
     container_name: apache_1
     volumes:
       - ./apache/site1/:/usr/local/apache2/htdocs/
-    restart: always
-    networks:
-      nginx:
-        ipv4_address: 10.110.16.11
 
   apache_2:
     image: "httpd:bookworm"
     container_name: apache_2
     volumes:
       - ./apache/site2/:/usr/local/apache2/htdocs/
-    restart: always
-    networks:
-      nginx:
-        ipv4_address: 10.110.16.12
 
   apache_3:
     image: "httpd:bookworm"
     container_name: apache_3
     volumes:
       - ./apache/site3/:/usr/local/apache2/htdocs/
-    restart: always
-    networks:
-      nginx:
-        ipv4_address: 10.110.16.13
 
   prometheus:
     image: prom/prometheus:latest
@@ -68,9 +53,6 @@ services:
     links:
       - alertmanager:alertmanager
     restart: always
-    networks:
-      nginx:
-        ipv4_address: 10.110.16.21
 
   alertmanager:
     image: prom/alertmanager
@@ -83,9 +65,6 @@ services:
     command:
       - '--config.file=/etc/alertmanager/config.yml'
       - '--storage.path=/alertmanager'
-    networks:
-      nginx:
-        ipv4_address: 10.110.16.22
 
   grafana:
     image: grafana/grafana
@@ -102,10 +81,6 @@ services:
       - GF_INSTALL_PLUGINS=vonage-status-panel
     env_file:
       - ./grafana/config.monitoring
-    restart: always
-    networks:
-      nginx:
-        ipv4_address: 10.110.16.23
 
   mysql_master:
     image: mysql:8.0
@@ -115,10 +90,6 @@ services:
       - ./mysql/master/data:/var/lib/mysql
     env_file:
       - ./mysql/mysql.config
-    restart: always
-    networks:
-      nginx:
-        ipv4_address: 10.110.16.31
 
   mysql_slave:
     image: mysql:8.0
@@ -128,14 +99,3 @@ services:
       - ./mysql/slave/data:/var/lib/mysql
     env_file:
       - ./mysql/mysql.config
-    restart: always
-    networks:
-      nginx:
-        ipv4_address: 10.110.16.32
-
-networks:
-  nginx:
-    driver: overlay
-    ipam:
-     config:
-     - subnet: 10.110.16.0/24

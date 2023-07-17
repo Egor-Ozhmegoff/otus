@@ -13,7 +13,7 @@ alerting:
   - scheme: http
     static_configs:
     - targets:
-      - "10.110.16.22:9093"
+      - "alertmanager:9093"
 
 scrape_configs:
 
