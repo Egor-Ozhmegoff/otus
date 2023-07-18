@@ -79,7 +79,6 @@ services:
     image: mysql:8.0
     volumes:
       - ./mysql/master/mysql.conf.cnf:/etc/mysql/conf.d/mysql.conf.cnf
-      - ./mysql/master/data:/var/lib/mysql
     env_file:
       - ./mysql/mysql.config
 
@@ -87,7 +86,6 @@ services:
     image: mysql:8.0
     volumes:
       - ./mysql/slave/mysql.conf.cnf:/etc/mysql/conf.d/mysql.conf.cnf
-      - ./mysql/slave/data:/var/lib/mysql
     env_file:
       - ./mysql/mysql.config
 
