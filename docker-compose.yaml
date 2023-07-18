@@ -96,8 +96,7 @@ services:
       context: "./runner"
       dockerfile: "Dockerfile"
     restart: on-failure
-    command: >
-      bash -c "sleep infinity && /opt/mysql/mysql_cluster_setup.sh"
+    command: ["sleep", "infinity", "/opt/mysql/mysql_cluster_setup.sh"]
     depends_on:
       - mysql_master
       - mysql_slave
