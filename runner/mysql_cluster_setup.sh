@@ -2,7 +2,7 @@
 
 until export MYSQL_PWD=rootpass; mysql -u root -h mysql_master -e ";"
 do
-    echo "Waiting for mysql_master database connection..."
+    echo "Waiting for mysql_master database connection..." > /dev/stdout
     sleep 4
 done
 
@@ -11,7 +11,7 @@ export MYSQL_PWD=rootpass; mysql -u root -h mysql_master -e '$priv_stmt'
 
 until export MYSQL_PWD=rootpass; mysql -u root -h mysql_slave-e ";"
 do
-    echo "Waiting for mysql_slave database connection..."
+    echo "Waiting for mysql_slave database connection..." > /dev/stdout
     sleep 4
 done
 

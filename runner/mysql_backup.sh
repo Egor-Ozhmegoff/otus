@@ -14,9 +14,3 @@ for database in $MYSQL;
         done
     done
 mysql -u root -h mysql_slave -e "START SLAVE;"
-
-COMMIT='date'
-cd /opt/mysql/backup
-git add *
-git commt -m "$COMMIT"
-git push
