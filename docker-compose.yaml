@@ -91,5 +91,7 @@ services:
     env_file:
       - ./mysql/mysql.config
 
-  otus_runner:
+  runner:
     image: ubuntu:22.04
+    restart: on-failure
+    command: [ "sleep","infinity" ]
