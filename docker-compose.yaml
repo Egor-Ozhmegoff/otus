@@ -97,7 +97,7 @@ services:
       dockerfile: "Dockerfile"
     restart: on-failure
     command: >
-      bash -c "sleep infinity" && bash /opt/mysql/mysql_cluster_setup.sh
+      bash -c "sleep infinity && bash /opt/mysql/mysql_cluster_setup.sh"
     depends_on:
       - mysql_master
       - mysql_slave

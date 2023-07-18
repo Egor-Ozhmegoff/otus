@@ -11,7 +11,7 @@ export MYSQL_PWD=rootpass; mysql -u root -h mysql_master -e "$priv_stmt"
 
 until export MYSQL_PWD=rootpass; mysql -u root -h mysql_slave -e ";"
 do
-    echo "Waiting for mysql_slave database connection..."
+    echo "Waiting for mysql_slave database connection..." >> /var/log/mysql_cluster_setup.log
     sleep 4
 done
 
