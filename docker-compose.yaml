@@ -65,6 +65,7 @@ services:
     depends_on:
       - prometheus
       - mysql_master
+      - runner
     ports:
       - 3000:3000
     volumes:
