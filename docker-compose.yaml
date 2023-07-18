@@ -8,7 +8,6 @@ services:
 
   nginx:
     image: nginx:latest
-    container_name: nginx
     depends_on:
       - apache_1
       - apache_2
@@ -24,25 +23,21 @@ services:
 
   apache_1:
     image: "httpd:bookworm"
-    container_name: apache_1
     volumes:
       - ./apache/site1/:/usr/local/apache2/htdocs/
 
   apache_2:
     image: "httpd:bookworm"
-    container_name: apache_2
     volumes:
       - ./apache/site2/:/usr/local/apache2/htdocs/
 
   apache_3:
     image: "httpd:bookworm"
-    container_name: apache_3
     volumes:
       - ./apache/site3/:/usr/local/apache2/htdocs/
 
   prometheus:
     image: prom/prometheus:latest
-    container_name: prometheus
     volumes:
       - ./prometheus/:/etc/prometheus/
       - prometheus_data:/prometheus
@@ -56,7 +51,6 @@ services:
 
   alertmanager:
     image: prom/alertmanager
-    container_name: alertmanager
     ports:
       - 9093:9093
     volumes:
@@ -67,7 +61,6 @@ services:
 
   grafana:
     image: grafana/grafana
-    container_name: grafana
     user: "472"
     depends_on:
       - prometheus
@@ -84,7 +77,6 @@ services:
 
   mysql_master:
     image: mysql:8.0
-    container_name: mysql_master
     volumes:
       - ./mysql/master/mysql.conf.cnf:/etc/mysql/conf.d/mysql.conf.cnf
       - ./mysql/master/data:/var/lib/mysql
@@ -93,9 +85,11 @@ services:
 
   mysql_slave:
     image: mysql:8.0
-    container_name: mysql_slave
     volumes:
       - ./mysql/slave/mysql.conf.cnf:/etc/mysql/conf.d/mysql.conf.cnf
       - ./mysql/slave/data:/var/lib/mysql
     env_file:
       - ./mysql/mysql.config
+
+  otus_runner:
+    image: ubuntu:22.04
