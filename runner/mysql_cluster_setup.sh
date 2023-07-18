@@ -9,7 +9,7 @@ done
 priv_stmt='CREATE USER "mydb_slave_user"@"%" IDENTIFIED BY "mydb_slave_pwd"; GRANT REPLICATION SLAVE ON *.* TO "mydb_slave_user"@"%"; FLUSH PRIVILEGES;'
 export MYSQL_PWD=rootpass; mysql -u root -h mysql_master -e '$priv_stmt'
 
-until export MYSQL_PWD=rootpass; mysql -u root -h mysql_slave-e ";"
+until export MYSQL_PWD=rootpass; mysql -u root -h mysql_slave -e ";"
 do
     echo "Waiting for mysql_slave database connection..." > /dev/stdout
     sleep 4
