@@ -1,7 +1,6 @@
 FROM ubuntu:22.04
 
 RUN apt update && apt install -y mysql-client cron
-RUN mkdir /opt/mysql
 COPY ./runner/mysql_cluster_setup.sh /opt/mysql/mysql_cluster_setup.sh
 COPY ./runner/mysql_backup.sh /opt/mysql/mysql_backup.sh
 RUN echo '* 1 * * * /opt/mysql/mysql_backup.sh > /dev/stdout' >> /etc/crontab
