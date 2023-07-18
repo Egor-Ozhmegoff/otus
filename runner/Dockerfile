@@ -7,4 +7,3 @@ RUN echo '* 1 * * * /opt/mysql/mysql_backup.sh > /dev/stdout' >> /etc/crontab
 RUN chmod +x /opt/mysql/mysql_cluster_setup.sh
 RUN chmod +x /opt/mysql/mysql_backup.sh
 RUN service cron start
-RUN /opt/mysql/mysql_cluster_setup.sh
