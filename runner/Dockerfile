@@ -9,4 +9,4 @@ RUN chmod +x /opt/mysql/mysql_cluster_setup.sh
 RUN chmod +x /opt/mysql/mysql_backup.sh
 RUN service cron start
 CMD bash /opt/mysql/mysql_cluster_setup.sh >> /var/log/mysql_config.log 2>&1
-CMD cron && tail -f /var/log/cron.log
+CMD cron
