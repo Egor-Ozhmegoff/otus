@@ -96,6 +96,7 @@ services:
       context: "./runner"
       dockerfile: "Dockerfile"
     restart: on-failure
+    command: ['bash', '/opt/initial_script.sh']
     depends_on:
       - mysql_master
       - mysql_slave
