@@ -9,7 +9,7 @@ for database in $MYSQL;
     mkdir -m 777 ./backup/$database;
     for table in $TABLES;
         do
-        export MYSQL_PWD=grafana; mysql -u grafana -h 10.110.1.131 --add-drop-table --add-locks --create-options --disable-keys\
+        export MYSQL_PWD=grafana; mysql -u grafana -h 10.110.1.131 --add-locks --create-options --disable-keys\
         --extended-insert --single-transaction --quick --set-charset --events --routines\
         --triggers --tab=./backup/$database $database $table;
         done
