@@ -22,6 +22,6 @@ CURRENT_POS=`echo $MS_STATUS | awk '{print $7}'`
 slave_config="CHANGE REPLICATION SOURCE TO SOURCE_HOST='mysql_master',SOURCE_USER='replica',SOURCE_PASSWORD='replicapass',SOURCE_LOG_FILE='$CURRENT_LOG',SOURCE_LOG_POS=$CURRENT_POS,GET_SOURCE_PUBLIC_KEY=1;"
 
 export MYSQL_PWD=rootpass; mysql -u root -h mysql_slave -e "$slave_config"
-export MYSQL_PWD=rootpass; mysql -u root -h mysql_master -e "START SLAVE;"
+export MYSQL_PWD=rootpass; mysql -u root -h mysql_slave -e "START SLAVE;"
 export MYSQL_PWD=rootpass; mysql -u root -h mysql_master -e "UNLOCK TABLES;"
 export MYSQL_PWD=rootpass; mysql -u root -h mysql_slave -e "SHOW SLAVE STATUS \G"
