@@ -63,8 +63,6 @@ services:
     image: grafana/grafana
     user: "472"
     depends_on:
-      - prometheus
-      - mysql_master
       - runner
     ports:
       - 3000:3000
