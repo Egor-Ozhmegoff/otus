@@ -1,7 +1,7 @@
 #!/bin/bash
 rm -r ./backup/*_db 2> /dev/null
 export MYSQL_PWD=grfana; mysql -u grafana -h 10.110.1.131 -e "STOP SLAVE;"
-MYSQL=`export MYSQL_PWD=rootpass; mysql -u grafana -h 10.110.1.131 --skip-column-names -e "SHOW DATABASES LIKE '%\_db';"`
+MYSQL=`export MYSQL_PWD=grafana; mysql -u grafana -h 10.110.1.131 --skip-column-names -e "SHOW DATABASES LIKE '%\_db';"`
 
 for database in $MYSQL;
     do
