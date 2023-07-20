@@ -1,5 +1,5 @@
 #!/bin/bash
-rm -r /opt/mysql/backup/*_db
+rm -r /opt/mysql/backup/*_db 2> /dev/null
 export MYSQL_PWD=rootpass; mysql -u root -h mysql_master -e "STOP SLAVE;"
 MYSQL=`export MYSQL_PWD=rootpass; mysql -u root -h mysql_slave --skip-column-names -e "SHOW DATABASES LIKE '%\_db';"`
 
