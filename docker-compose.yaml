@@ -70,6 +70,7 @@ services:
     image: mysql:latest
     volumes:
       - ./mysql/master/mysql.conf.cnf:/etc/mysql/conf.d/mysql.conf.cnf
+      - ./mysql/master/data:/var/lib/mysql
     env_file:
       - ./mysql/mysql.config
 
@@ -77,6 +78,7 @@ services:
     image: mysql:latest
     volumes:
       - ./mysql/slave/mysql.conf.cnf:/etc/mysql/conf.d/mysql.conf.cnf
+      - ./mysql/slave/data:/var/lib/mysql
     env_file:
       - ./mysql/mysql.config
 
