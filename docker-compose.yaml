@@ -92,6 +92,9 @@ services:
 
   runner:
     image: "otus/ubuntu"
+    build:
+      context: "./runner"
+      dockerfile: "Dockerfile"
     command: ['bash', '/opt/initial_script.sh']
     depends_on:
       - mysql_master
