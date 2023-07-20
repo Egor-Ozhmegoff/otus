@@ -1,6 +1,6 @@
 #!/bin/bash
 rm -r ./backup/*_db 2> /dev/null
-sudo mysql -u grafana -h 10.110.1.131 -e "STOP SLAVE;"
+sudo mysql "STOP SLAVE;"
 MYSQL=`sudo mysql --skip-column-names -e "SHOW DATABASES LIKE '%\_db';"`
 
 for database in $MYSQL;
@@ -9,7 +9,7 @@ for database in $MYSQL;
     mkdir -m 777 ./backup/$database;
     for table in $TABLES;
         do
-        export MYSQL_PWD=grafana; mysqldump --add-drop-table --add-locks --create-options --disable-keys\
+        sudo mysqldump --add-drop-table --add-locks --create-options --disable-keys\
         --extended-insert --single-transaction --quick --set-charset --events --routines\
         --triggers --tab=./backup/$database $database $table;
         done
