@@ -19,8 +19,9 @@ MS_STATUS=`export MYSQL_PWD=rootpass; mysql -u root -h mysql_master -e "SHOW MAS
 CURRENT_LOG=`echo $MS_STATUS | awk '{print $6}'`
 CURRENT_POS=`echo $MS_STATUS | awk '{print $7}'`
 
-start_slave_stmt="CHANGE MASTER TO MASTER_HOST='mysql_master',MASTER_USER='replica',MASTER_PASSWORD='replicapass',MASTER_LOG_FILE='$CURRENT_LOG',MASTER_LOG_POS=$CURRENT_POS; START SLAVE;"
+slave_config="CHANGE MASTER TO MASTER_HOST='mysql_master',MASTER_USER='replica',MASTER_PASSWORD='replicapass',MASTER_LOG_FILE='$CURRENT_LOG',MASTER_LOG_POS=$CURRENT_POS; GET_MASTER_PUBLIC_KEY=1;"
 
-export MYSQL_PWD=rootpass; mysql -u root -h mysql_slave -e "$start_slave_stmt"
+export MYSQL_PWD=rootpass; mysql -u root -h mysql_slave -e "$slave_config"
+export MYSQL_PWD=rootpass; mysql -u root -h mysql_master -e "START SLAVE;"
 export MYSQL_PWD=rootpass; mysql -u root -h mysql_master -e "UNLOCK TABLES;"
 export MYSQL_PWD=rootpass; mysql -u root -h mysql_slave -e "SHOW SLAVE STATUS \G"
