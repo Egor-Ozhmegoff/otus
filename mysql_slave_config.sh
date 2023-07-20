@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sudo cp ./mysql/slave/mysql.conf.cnf /etc/mysql/mysql.conf.d/mysqld.cnf
 export MYSQL_PWD=grafana; mysql -u grafana -h 10.110.1.130 -e "FLUSH TABLES WITH READ LOCK;"
 MS_STATUS=`export MYSQL_PWD=grafana; mysql -u grafana -h 10.110.1.130 -e "SHOW MASTER STATUS;"`
 CURRENT_LOG=`echo $MS_STATUS | awk '{print $6}'`
