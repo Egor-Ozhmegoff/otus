@@ -11,5 +11,5 @@ slave_config="CHANGE REPLICATION SOURCE TO SOURCE_HOST='mysql_master',SOURCE_USE
 sudo mysql -e "STOP SLAVE;"
 sudo mysql -e "$slave_config"
 sudo mysql -e "START SLAVE;"
-export MYSQL_PWD=grafana; mysql -u root -h 10.110.1.130 -e "UNLOCK TABLES;"
+export MYSQL_PWD=grafana; mysql -u grafana -h 10.110.1.130 -e "UNLOCK TABLES;"
 sudo mysql -e "SHOW SLAVE STATUS \G"
