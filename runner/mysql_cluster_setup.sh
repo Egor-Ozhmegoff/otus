@@ -6,7 +6,7 @@ do
     sleep 4
 done
 
-priv_stmt='CREATE USER "replica"@"%" IDENTIFIED BY "replicapass"; GRANT REPLICATION SLAVE ON *.* TO "replica"@"%"; FLUSH PRIVILEGES;'
+priv_stmt='CREATE USER "replica"@"%" IDENTIFIED WITH 'caching_sha2_password' BY "replicapass"; GRANT REPLICATION SLAVE ON *.* TO "replica"@"%"; FLUSH PRIVILEGES;'
 export MYSQL_PWD=rootpass; mysql -u root -h mysql_master -e "$priv_stmt"
 
 until export MYSQL_PWD=rootpass; mysql -u root -h mysql_slave -e ";"
