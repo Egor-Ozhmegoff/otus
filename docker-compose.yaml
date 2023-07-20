@@ -75,14 +75,14 @@ services:
       - ./grafana/config.monitoring
 
   mysql_master:
-    image: mysql:8.0
+    image: mysql:latest
     volumes:
       - ./mysql/master/mysql.conf.cnf:/etc/mysql/conf.d/mysql.conf.cnf
     env_file:
       - ./mysql/mysql.config
 
   mysql_slave:
-    image: mysql:8.0
+    image: mysql:latest
     volumes:
       - ./mysql/slave/mysql.conf.cnf:/etc/mysql/conf.d/mysql.conf.cnf
     env_file:
