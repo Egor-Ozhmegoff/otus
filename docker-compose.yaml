@@ -6,13 +6,6 @@ volumes:
 
 services:
 
-  runner:
-    image: "otus/ubuntu"
-    build:
-      context: "./runner"
-      dockerfile: "Dockerfile"
-    command: ['bash', '/opt/initial_script.sh']
-
   nginx:
     image: nginx:latest
     depends_on:
@@ -65,22 +58,6 @@ services:
     command:
       - '--config.file=/etc/alertmanager/config.yml'
       - '--storage.path=/alertmanager'
-
-  mysql_master:
-    image: mysql:latest
-    volumes:
-      - ./mysql/master/mysql.conf.cnf:/etc/mysql/conf.d/mysql.conf.cnf
-      - ./mysql/master/data:/var/lib/mysql
-    env_file:
-      - ./mysql/mysql.config
-
-  mysql_slave:
-    image: mysql:latest
-    volumes:
-      - ./mysql/slave/mysql.conf.cnf:/etc/mysql/conf.d/mysql.conf.cnf
-      - ./mysql/slave/data:/var/lib/mysql
-    env_file:
-      - ./mysql/mysql.config
 
   grafana:
     image: grafana/grafana
