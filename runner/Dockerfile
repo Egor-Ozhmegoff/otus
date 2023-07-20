@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-RUN apt update && apt install -y mysql-client cron nano
+RUN apt update && apt install -y mysql-client cron nano openssh-client git
 COPY ./initial_script.sh /opt/initial_script.sh
 COPY ./mysql_cluster_setup.sh /opt/mysql/mysql_cluster_setup.sh
 COPY ./mysql_backup.sh /opt/mysql/mysql_backup.sh
