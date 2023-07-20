@@ -12,11 +12,6 @@ services:
       context: "./runner"
       dockerfile: "Dockerfile"
     command: ['bash', '/opt/initial_script.sh']
-    volumes:
-      - ./runner/otus.key:/root/.ssh/otus
-    depends_on:
-      - mysql_master
-      - mysql_slave
 
   nginx:
     image: nginx:latest
