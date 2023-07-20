@@ -1,4 +1,4 @@
 [mysqld]
 server-id = 2
 bind-address = 0.0.0.0
-#secure-file-priv=""
+secure-file-priv=""
