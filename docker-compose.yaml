@@ -20,7 +20,7 @@ services:
   wordpress_1:
     image: wordpress:latest
     environment:
-    - WORDPRESS_DB_HOST=mysql_master:3306
+    - WORDPRESS_DB_HOST=10.110.1.130:3306
     - WORDPRESS_DB_USER=wordpress
     - WORDPRESS_DB_PASSWORD=wordpress
     - WORDPRESS_DB_NAME=wordpress_db
@@ -28,7 +28,7 @@ services:
   wordpress_2:
     image: wordpress:latest
     environment:
-    - WORDPRESS_DB_HOST=mysql_master:3306
+    - WORDPRESS_DB_HOST=10.110.1.130:3306
     - WORDPRESS_DB_USER=wordpress
     - WORDPRESS_DB_PASSWORD=wordpress
     - WORDPRESS_DB_NAME=wordpress_db
@@ -36,7 +36,7 @@ services:
   wordpress_3:
     image: wordpress:latest
     environment:
-    - WORDPRESS_DB_HOST=mysql_master:3306
+    - WORDPRESS_DB_HOST=10.110.1.130:3306
     - WORDPRESS_DB_USER=wordpress
     - WORDPRESS_DB_PASSWORD=wordpress
     - WORDPRESS_DB_NAME=wordpress_db
