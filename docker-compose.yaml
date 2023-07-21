@@ -19,30 +19,27 @@ services:
 
   wordpress_1:
     image: wordpress:latest
-    ports:
-     - 80
     environment:
-    - MYSQL_USER=wordpress
-    - MYSQL_PASSWORD=wordpress
-    - MYSQL_DATABASE=wordpress_db
+    - WORDPRESS_DB_HOST=mysql_master:3306
+    - WORDPRESS_DB_USER=wordpress
+    - WORDPRESS_DB_PASSWORD=wordpress
+    - WORDPRESS_DB_NAME=wordpress_db
 
   wordpress_2:
     image: wordpress:latest
-    ports:
-     - 80
     environment:
-    - MYSQL_USER=wordpress
-    - MYSQL_PASSWORD=wordpress
-    - MYSQL_DATABASE=wordpress_db
+    - WORDPRESS_DB_HOST=mysql_master:3306
+    - WORDPRESS_DB_USER=wordpress
+    - WORDPRESS_DB_PASSWORD=wordpress
+    - WORDPRESS_DB_NAME=wordpress_db
 
   wordpress_3:
     image: wordpress:latest
-    ports:
-     - 80
     environment:
-    - MYSQL_USER=wordpress
-    - MYSQL_PASSWORD=wordpress
-    - MYSQL_DATABASE=wordpress_db
+    - WORDPRESS_DB_HOST=mysql_master:3306
+    - WORDPRESS_DB_USER=wordpress
+    - WORDPRESS_DB_PASSWORD=wordpress
+    - WORDPRESS_DB_NAME=wordpress_db
 
   prometheus:
     image: prom/prometheus:latest
