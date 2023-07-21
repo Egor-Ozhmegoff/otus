@@ -17,35 +17,32 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
-  joomla_1:
-    image: joomla:3.6.2-apache
+  wordpress_1:
+    image: wordpress:latest
     ports:
      - 80
     environment:
-     - JOOMLA_DB_HOST=mysql_master:3306
-     - JOOMLA_DB_USER=joomla
-     - JOOMLA_DB_PASSWORD=joomla
-     - JOOMLA_DB_NAME=joomla_db
+    - MYSQL_USER=wordpress
+    - MYSQL_PASSWORD=wordpress
+    - MYSQL_DATABASE=wordpress_db
 
-  joomla_2:
-    image: joomla:3.6.2-apache
+  wordpress_2:
+    image: wordpress:latest
     ports:
      - 80
     environment:
-     - JOOMLA_DB_HOST=mysql_master:3306
-     - JOOMLA_DB_USER=joomla
-     - JOOMLA_DB_PASSWORD=joomla
-     - JOOMLA_DB_NAME=joomla_db
+    - MYSQL_USER=wordpress
+    - MYSQL_PASSWORD=wordpress
+    - MYSQL_DATABASE=wordpress_db
 
-  joomla_3:
-    image: joomla:3.6.2-apache
+  wordpress_3:
+    image: wordpress:latest
     ports:
      - 80
     environment:
-     - JOOMLA_DB_HOST=mysql_master:3306
-     - JOOMLA_DB_USER=joomla
-     - JOOMLA_DB_PASSWORD=joomla
-     - JOOMLA_DB_NAME=joomla_db
+    - MYSQL_USER=wordpress
+    - MYSQL_PASSWORD=wordpress
+    - MYSQL_DATABASE=wordpress_db
 
   prometheus:
     image: prom/prometheus:latest
