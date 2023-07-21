@@ -8,10 +8,6 @@ services:
 
   nginx:
     image: nginx:latest
-    depends_on:
-      - apache_1
-      - apache_2
-      - apache_3
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./nginx/load_balance.conf:/etc/nginx/conf.d/default.conf:ro
@@ -21,20 +17,35 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
-  apache_1:
-    image: "httpd:bookworm"
-    volumes:
-      - ./apache/:/usr/local/apache2/htdocs/
+  joomla_1:
+    image: joomla:3.6.2-apache
+    ports:
+     - 80
+    environment:
+     - JOOMLA_DB_HOST=mysql_master:3306
+     - JOOMLA_DB_USER=joomla
+     - JOOMLA_DB_PASSWORD=joomla
+     - JOOMLA_DB_NAME=joomla_db
 
-  apache_2:
-    image: "httpd:bookworm"
-    volumes:
-      - ./apache/:/usr/local/apache2/htdocs/
+  joomla_2:
+    image: joomla:3.6.2-apache
+    ports:
+     - 80
+    environment:
+     - JOOMLA_DB_HOST=mysql_master:3306
+     - JOOMLA_DB_USER=joomla
+     - JOOMLA_DB_PASSWORD=joomla
+     - JOOMLA_DB_NAME=joomla_db
 
-  apache_3:
-    image: "httpd:bookworm"
-    volumes:
-      - ./apache/:/usr/local/apache2/htdocs/
+  joomla_3:
+    image: joomla:3.6.2-apache
+    ports:
+     - 80
+    environment:
+     - JOOMLA_DB_HOST=mysql_master:3306
+     - JOOMLA_DB_USER=joomla
+     - JOOMLA_DB_PASSWORD=joomla
+     - JOOMLA_DB_NAME=joomla_db
 
   prometheus:
     image: prom/prometheus:latest
