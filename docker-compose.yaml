@@ -1,5 +1,9 @@
 version: '3.7'
 
+volumes:
+    prometheus_data: {}
+    grafana_data: {}
+
 services:
 
   nginx:
@@ -41,6 +45,7 @@ services:
     image: prom/prometheus:latest
     volumes:
       - ./prometheus/:/etc/prometheus/
+      - prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -67,6 +72,7 @@ services:
     ports:
       - 3000:3000
     volumes:
+      - grafana_data:/var/lib/grafana:rw
       - ./grafana/provisioning/:/etc/grafana/provisioning/
       - ./grafana/dashboards/node_exporter.json:/var/lib/grafana/dashboards/dashboard.json
     environment:
