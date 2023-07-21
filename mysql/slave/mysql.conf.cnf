@@ -8,3 +8,5 @@ myisam-recover-options  = BACKUP
 log_error = /var/log/mysql/error.log
 max_binlog_size = 100M
 secure-file-priv=""
+[Service]
+PrivateTmp=false

@@ -24,17 +24,17 @@ services:
   apache_1:
     image: "httpd:bookworm"
     volumes:
-      - ./apache/site1/:/usr/local/apache2/htdocs/
+      - ./apache/:/usr/local/apache2/htdocs/
 
   apache_2:
     image: "httpd:bookworm"
     volumes:
-      - ./apache/site2/:/usr/local/apache2/htdocs/
+      - ./apache/:/usr/local/apache2/htdocs/
 
   apache_3:
     image: "httpd:bookworm"
     volumes:
-      - ./apache/site3/:/usr/local/apache2/htdocs/
+      - ./apache/:/usr/local/apache2/htdocs/
 
   prometheus:
     image: prom/prometheus:latest
