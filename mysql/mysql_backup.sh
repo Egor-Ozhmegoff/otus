@@ -16,3 +16,8 @@ for database in $MYSQL;
         done
     done
 export MYSQL_PWD=grafana; mysql -u grafana -e "START SLAVE;"
+COMMIT=`date`
+cd /tmp/backup
+git add *_db
+git commit -m "$COMMIT"
+git push
