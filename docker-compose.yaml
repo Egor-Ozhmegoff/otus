@@ -74,7 +74,7 @@ services:
     volumes:
       - grafana_data:/var/lib/grafana:rw
       - ./grafana/provisioning/:/etc/grafana/provisioning/
-      - ./grafana/dashboards:/var/lib/grafana/dashboards
+      - ./grafana/dashboards/node_exporter.json:/var/lib/grafana/dashboards/dashboard.json
     environment:
       - GF_INSTALL_PLUGINS=vonage-status-panel
     env_file:
