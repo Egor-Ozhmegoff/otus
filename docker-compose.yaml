@@ -19,7 +19,6 @@ services:
 
   joomla_1:
     image: joomla:3.6.2-apache
-    ports:
     environment:
      - JOOMLA_DB_HOST=mysql_master:3306
      - JOOMLA_DB_USER=joomla
@@ -28,7 +27,6 @@ services:
 
   joomla_2:
     image: joomla:3.6.2-apache
-    ports:
     environment:
      - JOOMLA_DB_HOST=mysql_master:3306
      - JOOMLA_DB_USER=joomla
@@ -37,7 +35,6 @@ services:
 
   joomla_3:
     image: joomla:3.6.2-apache
-    ports:
     environment:
      - JOOMLA_DB_HOST=mysql_master:3306
      - JOOMLA_DB_USER=joomla
