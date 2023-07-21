@@ -1,6 +1,6 @@
 #!/bin/bash
-git clone git@github.com:Egor-Ozhmegoff/backup.git /tmp/backup/ 2>/dev/null
-rm -r /tmp/backup/*_db 2> /dev/null
+git clone git@github.com:Egor-Ozhmegoff/backup.git /tmp/backup/ 2>null
+rm -r /tmp/backup/*_db 2>null
 export MYSQL_PWD=grafana; mysql -u grafana -e "STOP SLAVE;"
 MYSQL=`export MYSQL_PWD=grafana; mysql -u grafana --skip-column-names -e "SHOW DATABASES LIKE '%\_db';"`
 
