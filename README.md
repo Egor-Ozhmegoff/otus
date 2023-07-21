@@ -9,3 +9,7 @@
 + docker_install.sh вспомогательный скрипт для установки докера
 + mysq_master_confin.sh скрипт для настройки мастера
 + mysq_slave_config.sh скрипт для настройки репликации слейва
++ mysql/mysql_backup.sh скрипт для бэкапа базы wordpress
+
+Для хранения бэкапов используется отдельный репозирорий
+https://github.com/Egor-Ozhmegoff/backup
