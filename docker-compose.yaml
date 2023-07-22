@@ -67,8 +67,6 @@ services:
   grafana:
     image: grafana/grafana
     user: "472"
-    depends_on:
-      - runner
     ports:
       - 3000:3000
     volumes:
