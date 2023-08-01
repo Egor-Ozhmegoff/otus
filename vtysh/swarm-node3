@@ -1,0 +1,25 @@
+hostname swarm-node3
+log syslog informational
+no ipv6 forwarding
+service integrated-vtysh-config
+!
+ip router-id 10.110.1.132
+!
+router bgp 4230000111
+ neighbor 10.222.252.130 remote-as 4230000501
+ neighbor 10.222.252.130 interface ens18
+ neighbor 10.222.252.130 ebgp-multihop 3
+ !
+ address-family ipv4 unicast
+  network 10.110.16.254/32
+  neighbor 10.222.252.130 prefix-list DENY_ALL in
+  neighbor 10.222.252.130 prefix-list ANYCAST out
+ exit-address-family
+exit
+!
+ip prefix-list DENY_ALL seq 5 deny 0.0.0.0/0 le 32
+ip prefix-list ANYCAST seq 5 permit 10.110.16.254/32
+!
+ip nht resolve-via-default
+!
+end
